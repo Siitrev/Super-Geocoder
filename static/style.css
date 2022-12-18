@@ -1,0 +1,36 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body{
+    background-color:rgb(29, 125, 85)
+}
+h1{
+    color: rgb(215, 144, 210);
+    text-align: center;
+    font-family: Geneva, sans-serif;
+    padding: 3vh 1vw;
+}
+p{
+    color: rgb(137, 189, 205);
+    text-align: center;
+    font-family: Geneva, sans-serif;
+    padding: 2vh 1vw;
+    font-weight: bolder;
+}
+.form-div form{
+    display: flex;
+    justify-items: center;
+    align-items: center;
+    flex-direction: column;
+}
+.form-div form *{
+   margin: 4px;
+}
+.form-div form input[type="file"]{
+    color: beige;
+}
+.form-div form input[type="file"]::file-selector-button{
+    visibility: hidden;
+}
