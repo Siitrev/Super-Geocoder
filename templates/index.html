@@ -14,11 +14,18 @@
     </div>
     <div class="form-div">
         <form method="POST" action="download" enctype="multipart/form-data">
-            <input type="file"><br>
+            <input type="file" name="file"><br>
             <input type="submit">
-            {% block button %}
-            {% endblock %}
         </form>
+        <div class="df">
+        {% for table in tables %}
+            {{ table|safe }}
+        {% endfor %}
+
+        {% block output %}
+        {% endblock %}
+        </div>
+        
     </div>
     
 </body>

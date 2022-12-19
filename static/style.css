@@ -34,3 +34,14 @@ p{
 /* .form-div form input[type="file"]::file-selector-button{
     visibility: hidden;
 } */
+.df{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+.df table td,th{
+    color: beige;
+    padding: 2px;
+    border: solid 2px black;
+    border-collapse: collapse;
+}
