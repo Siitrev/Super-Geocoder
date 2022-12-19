@@ -2,6 +2,7 @@
 from flask import Flask, request, render_template, send_file
 import pandas as pd
 from geopy.geocoders import ArcGIS
+import datetime
 
 
 
@@ -18,10 +19,11 @@ def index():
 
 @app.route("/download_file")
 def download_file():
-    return send_file("yourFile.csv",as_attachment=True)
+    return send_file(filename,as_attachment=True)
 
 @app.route("/download",methods=["POST"])
 def download():
+    global filename
     if request.method == "POST":
         file = request.files["file"]
         if allowed_ext(file.filename):
@@ -33,12 +35,16 @@ def download():
             
             if "address" in df.columns: df.rename(columns= {"address":"Address"})
             
-            df["Latitude"] = [nom.geocode(x).latitude for x in df["Address"]]
-            df["Longitude"] = [nom.geocode(x).longitude for x in df["Address"]]
+            df["coordinates"] = df["Address"].apply(nom.geocode)
             
-            df.to_csv("yourFile.csv")
+            df["Latitude"] = df["coordinates"].apply(lambda x: x.latitude if x!= None else None)
+            df["Longitude"] = df["coordinates"].apply(lambda x: x.longitude if x!= None else None)
             
-            return render_template("download.html",tables=[df.to_html(classes='data', header="true", border=0)])
+            df = df.drop("coordinates",1)
+            filename = datetime.datetime.now().strftime("uploads/"+"%Y-%m-%d-%H-%S-%d"+".csv")
+            df.to_csv(filename, index=None)
+            
+            return render_template("download.html",tables=[df.to_html( header="true", border=0)])
         
         return render_template("wrong_ext.html")
         
