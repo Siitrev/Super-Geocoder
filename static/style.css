@@ -38,10 +38,19 @@ p{
     display: flex;
     justify-content: center;
     flex-direction: column;
+    margin: auto;
+    width: 50%;
+    
+}
+.df table{
+    border-collapse: collapse;
 }
 .df table td,th{
     color: beige;
-    padding: 2px;
     border: solid 2px black;
+    padding: 2px;
     border-collapse: collapse;
+}
+.form-div button{
+    padding: 3px;
 }
