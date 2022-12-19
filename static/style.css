@@ -31,6 +31,6 @@ p{
 .form-div form input[type="file"]{
     color: beige;
 }
-.form-div form input[type="file"]::file-selector-button{
+/* .form-div form input[type="file"]::file-selector-button{
     visibility: hidden;
-}
+} */
